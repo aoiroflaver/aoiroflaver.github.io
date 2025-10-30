@@ -4,72 +4,9 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ポップアップ！アニマル</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css" />
-    <style>
-      body{
-        width:100%;
-        background: url("assets/img/bk2.png") no-repeat;
-        background-size:contain;
-        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-      }
-      .container{
-        width:100%;
-        height:100vh;
-        background: url("assets/img/bk1.png") no-repeat bottom;
-        background-size:contain;
-        padding-top:15vh;
-      }
-      .main{
-        width:90%;
-        margin:auto;
-        text-align:center;
-        animation: bounceIn;
-        animation-duration: 1s;
-      }
-      .btn-mori{
-        display:block;
-        margin-top:20px;
-        animation: fadeIn;
-        animation-duration: 1.2s;
-        animation-delay: .8s;
-        animation-fill-mode: forwards;
-        opacity: 0;
-      }
-      .caution{
-        font-size:10px;
-        margin-top:16px;
-        animation: fadeIn;
-        animation-duration: 1.2s;
-        animation-delay: 1s;
-        animation-fill-mode: forwards;
-        opacity: 0;
-      }
-      .main img {
-        margin:0 auto;
-        width:100%;
-        max-width:580px;
-      }
-    </style>
+    <title>タイトル</title>
   </head>
   <body>
-  <div class="container">
-    <div class="main animate__animated">
-      <img src="assets/img/main.png">
-      <a class="btn-mori animate__animated" id="links" href="ar.html" role="button"><img src="assets/img/btn.png"></a>
-      <div class="caution animate__animated">
-        動作推奨環境、お使いの端末やアプリケーション、通信の環境によって動作しない場合がございます。<br>
-        推奨環境：iOS13以上 Safari、Android OS 8以上 Chrome
-      </div>
-    </div>
-	</div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>
-      $(function(){
-        $("#links").attr("href", "ar.html?t="+(new Date()).getTime());
-        console.log($(""));
-      });
-    </script>
+ <h1>テスト</h1>
   </body>
 </html>
