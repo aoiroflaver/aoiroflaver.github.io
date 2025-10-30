@@ -1,8 +1,11 @@
-const CACHE_NAME = 'pwa-cache-v1';
+const CACHE_NAME = 'pwa-cache-v3';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/assets/css/style.css',
+  '/assets/js/app.js',
+  '/assets/js/sw.js'
 ];
 
 // Service Worker のインストール
