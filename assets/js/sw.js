@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pwa-cache-v3';
+const CACHE_NAME = 'pwa-cache-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -18,6 +18,7 @@ self.addEventListener('install', (event) => {
         return cache.addAll(urlsToCache);
       })
       .then(() => {
+        // インストール後すぐにアクティブにする（開発時のみ推奨）
         return self.skipWaiting();
       })
   );
@@ -105,4 +106,19 @@ self.addEventListener('notificationclick', (event) => {
   event.waitUntil(
     clients.openWindow('/')
   );
+});
+
+// メッセージ受信（アプリからの更新指示）
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.log('Service Worker: Received SKIP_WAITING message');
+    self.skipWaiting();
+    
+    // クライアントにリロード指示を送信
+    self.clients.matchAll().then(clients => {
+      clients.forEach(client => {
+        client.postMessage({ type: 'SKIP_WAITING' });
+      });
+    });
+  }
 });
