@@ -194,33 +194,46 @@ function showNotificationRequestUI() {
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       z-index: 1000;
       text-align: center;
-      max-width: 90%;
+      max-width: 95%;
+      min-width: 320px;
       animation: slideUp 0.3s ease-out;
     ">
       <div style="margin-bottom: 10px; font-weight: 600;">📱 アプリ更新の通知を受け取りますか？</div>
       <div style="margin-bottom: 10px; font-size: 0.9em; color: #666;">新しいバージョンが利用可能になったらお知らせします</div>
-      <button id="enableNotificationBtn" style="
-        background: #667eea;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-right: 10px;
-      ">許可する</button>
-      <button id="skipNotificationBtn" style="
-        background: #ccc;
-        color: #333;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 5px;
-        cursor: pointer;
-      ">スキップ</button>
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button id="enableNotificationBtn" style="
+          background: #667eea;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
+          min-width: 100px;
+        ">許可する</button>
+        <button id="skipNotificationBtn" style="
+          background: #ccc;
+          color: #333;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
+          min-width: 100px;
+        ">スキップ</button>
+      </div>
     </div>
     <style>
       @keyframes slideUp {
         from { transform: translate(-50%, 100%); opacity: 0; }
         to { transform: translate(-50%, 0); opacity: 1; }
+      }
+      @media (max-width: 480px) {
+        #notificationRequest > div {
+          max-width: 95vw !important;
+          min-width: 280px !important;
+          padding: 20px !important;
+        }
       }
     </style>
   `;
