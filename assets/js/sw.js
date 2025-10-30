@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pwa-cache-v5';
+const CACHE_NAME = 'pwa-cache-v6';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -103,43 +103,9 @@ self.addEventListener('notificationclick', (event) => {
   console.log('Service Worker: Notification click');
   event.notification.close();
   
-  if (event.notification.data && event.notification.data.type === 'app-update') {
-    // アプリ更新通知の場合
-    if (event.action === 'update') {
-      // 今すぐ更新を選択
-      event.waitUntil(
-        clients.matchAll().then(clients => {
-          if (clients.length > 0) {
-            // 既存のタブがある場合はフォーカス
-            clients[0].focus();
-            clients[0].postMessage({ type: 'SKIP_WAITING' });
-          } else {
-            // 新しいタブを開く
-            clients.openWindow('/');
-          }
-        })
-      );
-    } else if (event.action === 'dismiss') {
-      // 後で更新を選択 - 何もしない
-      console.log('Update dismissed');
-    } else {
-      // 通知本体をクリック
-      event.waitUntil(
-        clients.matchAll().then(clients => {
-          if (clients.length > 0) {
-            clients[0].focus();
-          } else {
-            clients.openWindow('/');
-          }
-        })
-      );
-    }
-  } else {
-    // 通常の通知の場合
-    event.waitUntil(
-      clients.openWindow('/')
-    );
-  }
+  event.waitUntil(
+    clients.openWindow('/')
+  );
 });
 
 // メッセージ受信（アプリからの更新指示）
@@ -153,31 +119,6 @@ self.addEventListener('message', (event) => {
       clients.forEach(client => {
         client.postMessage({ type: 'SKIP_WAITING' });
       });
-    });
-  } else if (event.data && event.data.type === 'SEND_UPDATE_NOTIFICATION') {
-    // 更新通知の送信
-    console.log('Service Worker: Sending update notification');
-    self.registration.showNotification(event.data.data.title, {
-      body: event.data.data.body,
-      icon: event.data.data.icon,
-      badge: event.data.data.badge,
-      tag: event.data.data.tag,
-      renotify: event.data.data.renotify,
-      requireInteraction: event.data.data.requireInteraction,
-      actions: [
-        {
-          action: 'update',
-          title: '今すぐ更新'
-        },
-        {
-          action: 'dismiss',
-          title: '後で'
-        }
-      ],
-      data: {
-        type: 'app-update',
-        url: '/'
-      }
     });
   }
 });
