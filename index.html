@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#2196F3">
     <title>PWA アプリ</title>
     
@@ -15,7 +15,7 @@
     
     <!-- iOS Safari meta tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="PWA アプリ">
     
     <!-- iOS Home Screen Icons -->
@@ -32,6 +32,9 @@
     <meta name="msapplication-TileColor" content="#667eea">
     <meta name="msapplication-TileImage" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 144 144'><rect width='144' height='144' fill='%23667eea'/><text x='72' y='95' font-size='72' text-anchor='middle' fill='white'>📱</text></svg>">
     <style>
+      html {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
       * {
         margin: 0;
         padding: 0;
@@ -42,12 +45,18 @@
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         min-height: 100vh;
+        min-height: 100dvh; /* Dynamic viewport height for mobile */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
         padding: 20px;
+        /* iOS Safe Area padding */
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
       }
       h1 {
         font-size: 2.5rem;
